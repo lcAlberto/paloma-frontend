@@ -2,22 +2,20 @@
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-## Setup
+## Branches
 
-Make sure to install the dependencies:
+1 - Versão da base nuxt e tailwindcss e Layouts
 
 ```bash
-# npm
-npm install
+# master
+git checkout master
+```
 
-# pnpm
-pnpm install
+1 - Versão da base nuxt e tailwindcss
 
-# yarn
-yarn install
-
-# bun
-bun install
+```bash
+# master
+git checkout master
 ```
 
 ## Development Server

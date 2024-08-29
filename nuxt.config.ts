@@ -1,5 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-04-03',
-  devtools: { enabled: true }
+  ssr: false,
+  devtools: { enabled: true },
+  app: {
+    head: {
+      link: [
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css' }
+      ],
+      meta: [
+        { charset: 'utf-8' },
+        { 'data-theme': 'light' },
+        { name: 'csrf-token', content: '' }
+      ]
+    }
+  },
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
 })
