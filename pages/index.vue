@@ -1,6 +1,6 @@
 <template>
   <div>
-    //
+    <font-awesome-icon :icon="['fas', 'user']" />
   </div>
 </template>
 <script setup lang="ts">
