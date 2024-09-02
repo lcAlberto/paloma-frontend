@@ -29,19 +29,18 @@ export default defineNuxtConfig({
     modules: [
         '@primevue/nuxt-module'
     ],
-    // primevue: {
-    //     options: {
-    //         theme: {
-    //             preset: Aura,
-    //             options: {
-    //                 // prefix: 'p',
-    //                 darkModeSelector: 'system',
-    //                 cssLayer: {
-    //                     name: 'primevue',
-    //                     order: 'tailwind-base, primevue, tailwind-utilities'
-    //                 }
-    //             }
-    //         }
-    //     }
-    // },
+    primevue: {
+        options: {
+            theme: {
+                preset: Aura,
+                options: {
+                    darkModeSelector: 'system',
+                    cssLayer: {
+                        name: 'primevue',
+                        order: 'tailwind-base, tailwind-utilities, primevue'
+                    }
+                }
+            }
+        }
+    },
 })
