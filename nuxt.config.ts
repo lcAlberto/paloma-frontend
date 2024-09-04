@@ -37,4 +37,10 @@ export default defineNuxtConfig({
         autoImport: true,
         importTheme: {from: '~/themes/default.ts'},
     },
+    runtimeConfig: {
+        apiSecret: '',
+        public: {
+            apiBase: '',
+        }
+    },
 })
