@@ -1,5 +1,3 @@
-import Aura from '@primevue/themes/aura';
-
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
     ssr: true,
@@ -18,7 +16,6 @@ export default defineNuxtConfig({
     },
     css: [
         '~/assets/css/main.css',
-        '~/assets/css/primevue-theme.css'
     ],
     postcss: {
         plugins: {
@@ -29,18 +26,15 @@ export default defineNuxtConfig({
     modules: [
         '@primevue/nuxt-module'
     ],
+    build: {
+        transpile: ['primevue'],
+    },
+    vite: {
+        plugins: [],
+    },
     primevue: {
-        options: {
-            theme: {
-                preset: Aura,
-                options: {
-                    darkModeSelector: 'system',
-                    cssLayer: {
-                        name: 'primevue',
-                        order: 'tailwind-base, tailwind-utilities, primevue'
-                    }
-                }
-            }
-        }
+        usePrimeVue: true,
+        autoImport: true,
+        importTheme: {from: '~/themes/default.ts'},
     },
 })
