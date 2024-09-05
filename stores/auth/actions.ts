@@ -1,4 +1,5 @@
 import {useRouter, useRuntimeConfig} from "#imports";
+import {state} from "~/stores/auth/state";
 
 export const actions = {
     async login(params: object) {
@@ -10,9 +11,9 @@ export const actions = {
                 method: 'POST',
                 body: params,
             });
-        } catch (error) {
+        } catch (error: any) {
             console.log(error.data.errors);
-            this.errors = error.data.errors;
+            state().errors = error.data.errors;
         }
     },
 }
