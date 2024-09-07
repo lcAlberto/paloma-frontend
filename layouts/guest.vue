@@ -16,10 +16,6 @@
 definePageMeta({
   middleware: 'auth'
 })
-onMounted(() => {
-  console.log('layout gest')
-})
-
 </script>
 
 

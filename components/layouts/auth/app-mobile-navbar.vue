@@ -14,8 +14,8 @@
               src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
           >
           <div class="flex flex-col">
-            <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">John Doe</h4>
-            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">john@example.com</p>
+            <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">{{ authUser.name }}</h4>
+            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{{ authUser.email }}</p>
           </div>
         </div>
       </template>
@@ -72,6 +72,7 @@ const props = defineProps({
 })
 
 const open = ref(false)
+const authUser = useCookie("authUser");
 
 watch(() => props.modelValue, (val) => {
   open.value = val

@@ -9,6 +9,12 @@
         adipisci rem similique, at omnis eligendi optio eos harum.
       </p>
 
+      <Button
+          label="ui"
+          severity="success"
+          @click="getMe()"
+      />
+
       <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2 xl:grid-cols-4">
         <div class="flex flex-col items-center p-8 transition-colors duration-300 transform border cursor-pointer rounded-xl hover:border-transparent group hover:bg-blue-600 dark:border-gray-700 dark:hover:border-transparent">
           <img
@@ -293,9 +299,16 @@
     lang="ts"
     setup
 >
+import {useAuthStore} from "~/stores/auth/authStore";
+
+const store = useAuthStore()
 onMounted(() => {
-  console.log('page home');
+  console.log('page home', store.getAuthUser);
 })
+
+async function getMe() {
+  await store.me()
+}
 </script>
 
 

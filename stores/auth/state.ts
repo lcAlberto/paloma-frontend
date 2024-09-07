@@ -1,6 +1,9 @@
 export const state = () => ({
     authUser: ref({}),
-    errors: ref([]),
+    errors: {
+        message: null,
+        fields: ref([])
+    },
     loading: false,
 
     toast: <ToastType>{

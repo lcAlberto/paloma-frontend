@@ -8,8 +8,8 @@
             src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
         >
         <div class="flex flex-col">
-          <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">John Doe</h4>
-          <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">john@example.com</p>
+          <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">{{ authUser.name }}</h4>
+          <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{{ authUser.email }}</p>
         </div>
       </div>
 
@@ -44,6 +44,7 @@
         <a
             class="flex items-center justify-center px-4 text-gray-400 dark:text-gray-200"
             href="#"
+            @click="logout"
         >
           <font-awesome-icon :icon="['fas', 'right-from-bracket']"/>
           <span class="mx-2 font-medium">Sair</span>
@@ -57,6 +58,10 @@
     lang="ts"
     setup
 >
+import {useAuthStore} from "~/stores/auth/authStore";
+
+const authUser = useCookie("authUser");
+const store = useAuthStore()
 const pages = ref([
   {
     label: 'Dashboard',
@@ -104,15 +109,9 @@ const links = ref([
 
 ])
 
-// const props = defineProps({
-//   open: {type: Boolean, default: true}
-// })
-//
-// const open = ref(true)
-//
-// watch(() => props.open, (val) => {
-//   open.value = val
-// });
+async function logout() {
+  await store.logout()
+}
 </script>
 <style scoped>
 nav {
