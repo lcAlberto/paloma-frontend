@@ -11,6 +11,7 @@ export default {
     theme: {
         extend: {
             colors: {
+                "primary": "#3f15d5",
                 "primary-50": "#f1f0fd",
                 "primary-100": "#e6e3fc",
                 "primary-200": "#cfcafa",
@@ -23,6 +24,7 @@ export default {
                 "primary-900": "#2f1865",
                 "primary-950": "#1c0d46",
 
+                'secondary': '#343f57',
                 'secondary-50': '#f1f2f8',
                 'secondary-100': '#e2e5ee',
                 'secondary-200': '#bec6da',
@@ -35,6 +37,7 @@ export default {
                 'secondary-900': '#1a1f2a',
                 'secondary-950': '#11141c',
 
+                'accent': '#93d615',
                 'accent-50': '#f8fee7',
                 'accent-100': '#eefccb',
                 'accent-200': '#defa9c',
@@ -48,6 +51,7 @@ export default {
                 'accent-950': '#1c2e05',
 
 
+                'info': '#1ba8fa',
                 'info-50': '#f2f9ff',
                 'info-100': '#e3f2ff',
                 'info-200': '#c0e6ff',
@@ -61,6 +65,7 @@ export default {
                 'info-950': '#063155',
 
 
+                'warning': '#ffff00',
                 'warning-50': '#fbffe7',
                 'warning-100': '#f4ffc1',
                 'warning-200': '#eeff86',
@@ -73,6 +78,7 @@ export default {
                 'warning-900': '#74580f',
                 'warning-950': '#443004',
 
+                'danger': '#ff494a',
                 'danger-50': '#fff1f1',
                 'danger-100': '#ffdfdf',
                 'danger-200': '#ffc5c5',
@@ -86,21 +92,21 @@ export default {
                 'danger-950': '#4b0404',
 
 
-                "surface-0": "rgb(var(--surface-0))",
-                "surface-50": "rgb(var(--surface-50))",
-                "surface-100": "rgb(var(--surface-100))",
-                "surface-200": "rgb(var(--surface-200))",
-                "surface-300": "rgb(var(--surface-300))",
-                "surface-400": "rgb(var(--surface-400))",
-                "surface-500": "rgb(var(--surface-500))",
-                "surface-600": "rgb(var(--surface-600))",
-                "surface-700": "rgb(var(--surface-700))",
-                "surface-800": "rgb(var(--surface-800))",
-                "surface-900": "rgb(var(--surface-900))",
-                "surface-950": "rgb(var(--surface-950))",
+                // "surface-0": "rgb(var(--surface-0))",
+                // "surface-50": "rgb(var(--surface-50))",
+                // "surface-100": "rgb(var(--surface-100))",
+                // "surface-200": "rgb(var(--surface-200))",
+                // "surface-300": "rgb(var(--surface-300))",
+                // "surface-400": "rgb(var(--surface-400))",
+                // "surface-500": "rgb(var(--surface-500))",
+                // "surface-600": "rgb(var(--surface-600))",
+                // "surface-700": "rgb(var(--surface-700))",
+                // "surface-800": "rgb(var(--surface-800))",
+                // "surface-900": "rgb(var(--surface-900))",
+                // "surface-950": "rgb(var(--surface-950))",
             },
         },
     },
-    plugins: [require('tailwindcss-primeui')],
+    // plugins: [require('tailwindcss-primeui')],
 }
 

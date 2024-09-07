@@ -17,14 +17,15 @@
 
         <div class="p-0 text-white dark:text-gray-800 mt-0 flex items-end flex-col-reverse sm:flex-row">
           <div class="flex justify-between w-full">
-            <Button
-                aria-label="Sidebar"
-                class="block md:hidden"
-                icon="fas fa-bars"
-                severity="secondary"
-                text
-                @click="mobileNav = !mobileNav"
-            />
+            <div class="block md:hidden">
+              <Button
+                  aria-label="Sidebar"
+                  icon="fas fa-bars"
+                  severity="secondary"
+                  text
+                  @click="mobileNav = !mobileNav"
+              />
+            </div>
             <div class="flex items-center justify-items-end mt-0">
               <notification-drodown/>
               <user-dropdown/>
@@ -44,7 +45,6 @@ import UserDropdown from "~/components/layouts/ui-elements/navbar/user-dropdown.
 
 const mobileNav = defineModel('mobileNav')
 const sidebar = defineModel('sidebar')
-// const lastName = defineModel('lastName')
 
 </script>
 <style scoped>

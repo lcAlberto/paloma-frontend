@@ -1,6 +1,6 @@
 export default defineNuxtConfig({
     compatibilityDate: '2024-04-03',
-    ssr: true,
+    ssr: false,
     devtools: {enabled: true},
     app: {
         head: {
@@ -23,9 +23,7 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
-    modules: [
-        '@primevue/nuxt-module'
-    ],
+    modules: ['@primevue/nuxt-module', '@pinia/nuxt'],
     build: {
         transpile: ['primevue'],
     },
@@ -36,5 +34,11 @@ export default defineNuxtConfig({
         usePrimeVue: true,
         autoImport: true,
         importTheme: {from: '~/themes/default.ts'},
+    },
+    runtimeConfig: {
+        apiSecret: '',
+        public: {
+            apiBase: '',
+        }
     },
 })
