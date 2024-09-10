@@ -85,10 +85,6 @@
 >
 import {useAuthStore} from "~/stores/auth/authStore";
 
-definePageMeta({
-  layout: 'guest'
-})
-
 const store = useAuthStore()
 const router = useRouter()
 const form = ref({
