@@ -1,5 +1,5 @@
 <template>
-  <div class="w-96">
+  <div :class="route.hash === '#create-farm' ? 'w-1/3' : 'w-96'">
     <Card class="bg-white dark:bg-gray-800 rounded-2xl">
       <template #content>
         <div class="flex flex-col gap-3 w-full">
@@ -22,6 +22,7 @@
           <forget-password v-if="route.hash === '#forget-password'"/>
           <reset-password v-else-if="route.hash === '#reset-password'"/>
           <email-validation v-else-if="route.hash === '#email-validation'"/>
+          <create-farm v-else-if="route.hash === '#create-farm'"/>
           <div
               v-else
               class="min-h-[35rem]"
@@ -63,6 +64,7 @@ import LoginWithGoogleTab from "~/components/auth-pages/login-with-google-tab.vu
 import ForgetPassword from "~/components/auth-pages/forget-password.vue";
 import ResetPassword from "~/components/auth-pages/reset-password.vue";
 import EmailValidation from "~/components/auth-pages/email-validation.vue";
+import CreateFarm from "~/components/auth-pages/create-farm.vue";
 
 definePageMeta({
   layout: 'guest'
