@@ -22,8 +22,7 @@
 
           <span class="w-1/5 border-b dark:border-gray-400 lg:w-1/4"></span>
         </div>
-        <div class="grid grid-cols-2 gap-4">
-          <div class="mt-4">
+        <div class="mt-4">
             <label
                 class="block mb-2 text-sm font-medium text-gray-600 dark:text-gray-200"
                 for="LoggingEmailAddress"
@@ -38,7 +37,6 @@
                 class="text-danger-600"
             >{{ errors.email[0] }}</small>
           </div>
-        </div>
 
         <div class="flex items-center justify-center mt-4 w-full">
           <span class="w-1/5 border-b dark:border-gray-600 lg:w-1/4"></span>

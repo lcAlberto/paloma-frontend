@@ -1,48 +1,27 @@
-import type {UseFetchOptions} from 'nuxt/app';
-import {useRuntimeConfig, useCookie, showError} from '#imports';
+import {useCookie, useRouter, useRuntimeConfig} from '#imports';
+import type {FetchError, FetchOptions, FetchResponse} from "~/types/fetch";
 
-const useAuthFetch = (url: string | (() => string), options: UseFetchOptions<null> = {}) => {
+export default async function useAuthFetch<T = any>(endpoint: string, options: FetchOptions = {}): Promise<FetchResponse<T>> {
   const config = useRuntimeConfig();
+  const token = useCookie('token');
+  const router = useRouter();
 
-  const customFetch = $fetch.create({
-    baseURL: config.public.apiBase,
-    onRequest({options}) {
-      const token = useCookie('token');
-      if (token?.value) {
-        // console.log('[fetch request] Authorization header created');
-        options.headers = options.headers || {};
-        options.headers.Authorization = `Bearer ${token.value}`;
+  const url = `${config.public.apiBase}${endpoint}`;
+  options.headers = {
+    ...options.headers,
+    Authorization: `Bearer ${token.value}`,
+  };
+
+  try {
+    return await $fetch<FetchResponse<T>>(url, options);
+  } catch (error: any) {
+    if (error.response) {
+      if (error.response.status === 401) {
+        router.push('/');
+      } else if (error.response.status === 422) {
+        return Promise.reject(error.response._data as FetchError);
       }
-    },
-    onResponse({response}) {
-      // console.info('onResponse ', {
-      //   endpoint: response.url,
-      //   status: response?.status,
-      // });
-    },
-    onResponseError({response}) {
-      const statusMessage = response?.status === 401 ? 'Unauthorized' : 'Response failed';
-      console.error('onResponseError ', {
-        endpoint: response.url,
-        status: response?.status,
-        statusMessage,
-      });
-      if (response?.status === 401) {
-        const router = useRouter()
-        router.push('/')
-      }
-      throw showError({
-        statusCode: response?.status,
-        statusMessage,
-        fatal: true,
-      });
-    },
-  });
-
-  return useFetch(url, {
-    ...options,
-    $fetch: customFetch,
-  });
-};
-
-export default useAuthFetch;
+    }
+    return Promise.reject(error);
+  }
+}

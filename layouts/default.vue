@@ -14,7 +14,7 @@
                 v-model:sidebar="sidebar"
             />
             <app-mobile-navbar v-model="mobileNav"/>
-            <div class="bg-white rounded-xl p-4 mt-5">
+            <div class="bg-white rounded-xl shadow-2xl p-4 mt-5 relative">
               <slot/>
             </div>
           </div>
@@ -34,9 +34,6 @@ import AppMobileNavbar from "~/components/layouts/auth/app-mobile-navbar.vue";
 const sidebar = ref(true)
 const mobileNav = ref(false)
 
-watch(() => mobileNav, (val) => {
-  console.log(val, 'mobileeee');
-});
 </script>
 
 
