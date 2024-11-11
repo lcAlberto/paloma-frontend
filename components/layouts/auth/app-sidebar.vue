@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-white w-72 rounded-2xl p-4 animate-fade-left animate-once animate-ease-in-out animate-duration-1000 shadow-2xl">
+  <div class="w-72">
+    <div class="fixed bg-white w-72 rounded-2xl p-4 animate-fade-left animate-once animate-ease-in-out animate-duration-1000 shadow-2xl">
     <aside class="flex flex-col justify-center h-100 overflow-y-auto bg-white dark:bg-gray-900 dark:border-gray-700">
       <div class="flex flex-row justify-center items-center mt-6">
         <img
@@ -51,6 +52,7 @@
         </a>
       </div>
     </aside>
+  </div>
   </div>
 </template>
 

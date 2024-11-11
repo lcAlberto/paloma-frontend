@@ -31,7 +31,7 @@ const store = useAddressStore()
 
 const zipValue = ref('')
 const isInvalid = computed(() => props.errors && props.errors.length > 0);
-const zipcodeData = computed(() => store.getZipCodeData);
+const zipcodeData = computed(() => store.zipcodeData);
 const states = computed(() => store.getStates);
 
 

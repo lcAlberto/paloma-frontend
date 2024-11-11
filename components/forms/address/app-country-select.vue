@@ -47,7 +47,7 @@ const selectedCountry = ref();
 // const loading = computed(() => store.getLoading('fetchingCountries'));
 const loading = false;
 
-const countries = computed(() => store.getCountries);
+const countries = computed(() => store.countries);
 const isInvalid = computed(() => props.errors && props.errors.length > 0);
 
 onMounted(() => {

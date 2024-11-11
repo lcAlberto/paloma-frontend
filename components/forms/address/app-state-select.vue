@@ -48,7 +48,7 @@ const store = useAddressStore()
 const selectedState = ref();
 const loading = false;
 // const loading = computed(() => store.getLoading('fetchingStates'));
-const states = computed(() => store.getStates);
+const states = computed(() => store.states);
 const isInvalid = computed(() => props.errors && props.errors.length > 0);
 
 const preSelectedState = computed(() => store.getZipCodeData);
