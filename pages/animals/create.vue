@@ -1,6 +1,6 @@
 <template>
-  <div class="p-2 lg:h-[80vh] pb-2 overflow-y-auto">
-    <div class="flex flex-col-reverse md:flex-row justify-between gap-4 px-5 pt-5">
+  <div class="h-full flex flex-col gap-5 p-2">
+    <div class="card p-5 flex flex-col-reverse md:flex-row justify-between gap-4 px-5 pt-5">
       <div>
         <h2 class="text-lg font-bold">
           <font-awesome-icon
@@ -9,8 +9,8 @@
           />
           Adicionar novo registro de animal
         </h2>
-        <p class="text-gray-500">Lorem ipsum lorem fusce eleifend inceptos bibendum conubia venenatis, erat torquent donec </p>
-    </div>
+        <p class="text-gray-500">Lorem ipsum lorem fusce eleifend inceptos bibendum conubia </p>
+      </div>
       <Button
           aria-label="Star"
           icon="fa fa-arrow-left"
@@ -20,17 +20,16 @@
           @click="router.push('/animals')"
       />
     </div>
-    <Divider/>
-    <div class="flex flex-col gap-5 items-center justify-between pb-5 min-h-[86%] max-h-screen">
-      <div class="flex flex-col-reverse md:flex-row justify-center items-center w-full gap-4">
-          <div class="w-1/2">
-            <animals-animal-main-form v-model="formData"/>
-          </div>
-          <animals-animal-image-form/>
+    <div class="card p-5 flex flex-col flex-wrap gap-5 items-center justify-start relative">
+      <div class="flex flex-col-reverse md:flex-row gap-4 justify-center items-start w-full md:h-[58vh] overflow-auto pr-2">
+        <animals-animal-main-form
+            v-model="formData"
+            class="w-full md:w-1/2 xl:w-10/12 min-w-56 flex-grow"
+        />
+        <animals-animal-image-form class="w-full md:w-1/2 lg:w-1/3 min-w-56 sticky top-0"/>
       </div>
-
       <Button
-          class="w-64 capitalize mt-auto"
+          class="w-64 capitalize"
           severity="primary"
           type="button"
           @click="submit"
@@ -39,7 +38,6 @@
       </Button>
 
     </div>
-    <div></div>
   </div>
 </template>
 <script
@@ -90,10 +88,7 @@ async function submit() {
 
   await store.createAnimal(param);
 }
-
-
 </script>
-
 
 <style scoped>
 

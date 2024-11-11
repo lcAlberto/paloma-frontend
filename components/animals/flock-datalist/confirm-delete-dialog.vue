@@ -60,6 +60,7 @@ const confirmDelete = () => {
     },
     reject: () => {
       emits('reject')
+      open.value = false
     }
   });
 };

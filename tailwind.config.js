@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: ['selector', '[data-mode="light"]'],
     content: [
         "./components/**/*.{js,vue,ts}",
         "./layouts/**/*.vue",
@@ -11,6 +12,8 @@ export default {
     theme: {
         extend: {
             colors: {
+                'base-50': '#f1f2f8',
+
                 "primary": "#3f15d5",
                 "primary-50": "#f1f0fd",
                 "primary-100": "#e6e3fc",

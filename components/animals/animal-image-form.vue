@@ -1,46 +1,48 @@
 <template>
-  <Card style="max-width: 25rem; min-width: 20rem; overflow: hidden">
-    <template #header>
+  <div class="card shadow-none border-secondary-50 border-2 overflow-hidden">
+    <div>
       <Image
           alt="Image"
           preview
       >
-          <template #previewicon>
-            <i class="pi pi-search"></i>
-          </template>
-          <template #image>
-            <img
-                alt="image"
-                src="~/assets/images/app/login.jpg"
+        <template #previewicon>
+          <div class="flex flex-col">
+            <font-awesome-icon
+                :icon="['fas', 'maximize']"
+                size="2xl"
             />
-          </template>
-          <template #preview="slotProps">
-            <img
-                :style="slotProps.style"
-                alt="preview"
-                src="~/assets/images/app/login.jpg"
-                @click="slotProps.onClick"
-            />
-          </template>
-        </Image>
-    </template>
-    <template #title>Imagem do animal</template>
-    <template #subtitle>Carregue um arquivo de imagem válido, no formato png ou jpg</template>
-    <!--    <template #footer>-->
-    <!--        <div class="flex gap-4 mt-1">-->
-    <!--            <Button-->
-    <!--                class="w-full"-->
-    <!--                label="Cancel"-->
-    <!--                outlined-->
-    <!--                severity="secondary"-->
-    <!--            />-->
-    <!--            <Button-->
-    <!--                class="w-full"-->
-    <!--                label="Save"-->
-    <!--            />-->
-    <!--        </div>-->
-    <!--    </template>-->
-</Card>
+            <h1>Ampliar</h1>
+          </div>
+        </template>
+        <template #image>
+          <img
+              alt="image"
+              class="rounded-t-xl"
+              src="~/assets/images/app/Artboard.png"
+          />
+        </template>
+        <template #preview="slotProps">
+          <img
+              :style="slotProps.style"
+              alt="preview"
+              class="w-1/2 m-auto"
+              src="~/assets/images/app/Artboard.png"
+              @click="slotProps.onClick"
+          />
+        </template>
+      </Image>
+    </div>
+    <div>
+      <div class="flex flex-wrap justify-between items-center p-2">
+        <h2>Foto do animal</h2>
+        <Button
+            icon="fa fa-upload"
+            raised
+            variant="text"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 <script
     lang="ts"

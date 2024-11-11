@@ -1,19 +1,15 @@
 <template>
-  <div class="w-full">
-    <div class="relative pt-2 bg-blueGray-500">
-       <div class="px-4 md:px-6 mx-auto w-full">
-          <div>
-             <div class="flex items-center justify-center flex-wrap">
-                <single-card
-                    v-for="(item, index) in props.items"
-                    :key="index"
-                    :item="item"
-                />
-             </div>
-          </div>
-       </div>
+  <div class="bg-blueGray-500">
+    <div class="w-full">
+      <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-1 gap-y-0 gap-x-3 md:gap-y-3 justify-items-stretch content-stretch">
+        <single-card
+            v-for="(item, index) in props.items"
+            :key="index"
+            :item="item"
+        />
+      </div>
     </div>
- </div>
+  </div>
 </template>
 <script
     lang="ts"

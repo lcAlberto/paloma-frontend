@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex justify-center">
+  <div class="bg-base-50 h-screen relative flex justify-center">
     <div class="bg-primary-500 absolute top-0 w-full h-80 shadow-2xl"></div>
     <div class="bg-primary-50 absolute top-2/3 w-full"></div>
     <div class="h-100 w-full absolute top-2 md:top-10 px-2 md:px-5 flex flex-col">
@@ -14,7 +14,7 @@
                 v-model:sidebar="sidebar"
             />
             <app-mobile-navbar v-model="mobileNav"/>
-            <div class="bg-white rounded-xl shadow-2xl p-4 mt-5 relative">
+            <div class="mt-5 relative overflow-visible">
               <slot/>
             </div>
           </div>
@@ -38,5 +38,7 @@ const mobileNav = ref(false)
 
 
 <style scoped>
-
+html {
+  background-color: #ed1516 !important;
+}
 </style>
