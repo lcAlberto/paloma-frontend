@@ -98,7 +98,7 @@ const pages = ref([
   {
     label: 'Ciclos reprodutivos',
     icon: ['fas', 'mars-and-venus-burst'],
-    link: '/production'
+    link: '/breedings'
   },
   {
     label: 'Central veterinária',

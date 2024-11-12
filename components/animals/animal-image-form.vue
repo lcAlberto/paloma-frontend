@@ -36,9 +36,11 @@
       <div class="flex flex-wrap justify-between items-center p-2">
         <h2>Foto do animal</h2>
         <Button
+            aria-label="Star"
             icon="fa fa-upload"
             raised
-            variant="text"
+            severity="contrast"
+            text
         />
       </div>
     </div>
