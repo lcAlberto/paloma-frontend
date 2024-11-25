@@ -89,7 +89,7 @@ const form = ref({
   password: '',
   password_confirmation: ''
 })
-const errors = computed(() => store.errors);
+const errors = computed(() => store.getFormErrors);
 const isInvalid = computed(() => form.value.password_confirmation.length === 0 ||
     form.value.password.length === 0)
 

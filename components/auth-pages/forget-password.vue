@@ -90,11 +90,12 @@ const router = useRouter()
 const form = ref({
   email: ''
 })
-const errors = computed(() => store.errors);
+const errors = computed(() => store.getFormErrors);
 const isInvalid = computed(() => form.value.email.length === 0)
 
 async function submit() {
   router.replace({hash: "#reset-password"})
+  // await store.login(form.value)
 }
 </script>
 
