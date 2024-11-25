@@ -188,8 +188,8 @@ async function loadFlock() {
   await store.fetchAnimals()
 }
 
-async function deleteAnimal(animal: object) {
-  await store.deleteAnimal(animal.id)
+async function deleteAnimal(animal_id: string | number) {
+  await store.deleteAnimal(animal_id)
 }
 </script>
 
