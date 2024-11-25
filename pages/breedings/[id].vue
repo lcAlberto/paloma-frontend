@@ -59,11 +59,6 @@ import {computed, onMounted} from "vue";
 import BreedingMainForm from "~/components/production-cicle/BreedingMainForm.vue";
 import BreedingDetails from "~/components/production-cicle/BreedingDetails.vue";
 
-definePageMeta({
-  middleware: "auth",
-  title: "Edit Breeding",
-})
-
 const route = useRoute()
 const store = useBreedingStore()
 

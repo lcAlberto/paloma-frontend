@@ -44,11 +44,6 @@
     lang="ts"
     setup
 >
-definePageMeta({
-  middleware: "auth",
-  title: "Create animal",
-})
-
 import type {AnimalFormData, AnimalFormPayload} from "~/types/AnimalForm";
 import moment from "moment";
 import {useFlockStore} from "~/stores/flock/flockStore";
@@ -93,7 +88,6 @@ async function submit() {
 
   await store.createAnimal(param);
 }
-
 </script>
 
 <style scoped>

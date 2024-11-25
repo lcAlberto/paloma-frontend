@@ -53,12 +53,8 @@
 >
 import FlockTable from "~/components/animals/flock-datalist/flock-table.vue";
 
-definePageMeta({
-  middleware: "auth",
-  title: "Animals",
-})
-
 const router = useRouter()
+
 </script>
 
 

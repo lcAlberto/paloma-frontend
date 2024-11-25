@@ -2,18 +2,15 @@
   <div class="w-72">
     <div class="fixed bg-white w-72 rounded-2xl p-4 animate-fade-left animate-once animate-ease-in-out animate-duration-1000 shadow-2xl">
       <aside class="flex flex-col justify-center h-100 overflow-y-auto bg-white dark:bg-gray-900 dark:border-gray-700">
-        <div
-            v-if="authUser"
-            class="flex flex-row justify-center items-center mt-6"
-        >
+        <div class="flex flex-row justify-center items-center mt-6">
           <img
               alt="avatar"
               class="object-cover w-14 h-14 mx-2 rounded-full"
               src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
           >
           <div class="flex flex-col">
-            <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">{{ authUser?.name }}</h4>
-            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{{ authUser?.email }}</p>
+            <h4 class="mx-2 font-medium text-gray-800 dark:text-gray-200">{{ authUser.name }}</h4>
+            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400">{{ authUser.email }}</p>
           </div>
         </div>
 

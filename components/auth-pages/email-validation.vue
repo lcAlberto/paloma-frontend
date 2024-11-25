@@ -72,7 +72,7 @@ const form = ref({
   password: ''
 })
 
-const errors = computed(() => store.errors);
+const errors = computed(() => store.getFormErrors);
 
 async function submit() {
   console.log('aaa')
