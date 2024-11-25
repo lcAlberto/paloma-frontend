@@ -6,7 +6,11 @@
 
           <div class="px-3">
             <div class="flex justify-center mx-auto">
-              <img alt="" class="w-auto h-7 sm:h-8" src="https://merakiui.com/images/logo.svg">
+              <img
+                  alt=""
+                  class="w-auto h-7 sm:h-8"
+                  src="https://merakiui.com/images/logo.svg"
+              >
             </div>
 
             <p class="mt-3 text-xl text-center text-gray-600 dark:text-gray-200">
@@ -15,11 +19,14 @@
 
           </div>
 
-          <forget-password v-if="route.hash === '#forget-password'" />
-          <reset-password v-else-if="route.hash === '#reset-password'" />
-          <email-validation v-else-if="route.hash === '#email-validation'" />
-          <create-farm v-else-if="route.hash === '#create-farm'" />
-          <div v-else class="min-h-[35rem]">
+          <forget-password v-if="route.hash === '#forget-password'"/>
+          <reset-password v-else-if="route.hash === '#reset-password'"/>
+          <email-validation v-else-if="route.hash === '#email-validation'"/>
+          <create-farm v-else-if="route.hash === '#create-farm'"/>
+          <div
+              v-else
+              class="min-h-[35rem]"
+          >
             <Tabs value="0">
               <TabList>
                 <Tab value="0">
@@ -30,12 +37,15 @@
                 </Tab>
               </TabList>
               <TabPanels>
-                <TabPanel style="padding: 0" value="0">
-                  <login-with-google-tab />
-                  <auth-pages-login-tab />
+                <TabPanel
+                    style="padding: 0"
+                    value="0"
+                >
+                  <login-with-google-tab/>
+                  <auth-pages-login-tab/>
                 </TabPanel>
                 <TabPanel value="1">
-                  <auth-pages-register-tab />
+                  <auth-pages-register-tab/>
                 </TabPanel>
               </TabPanels>
             </Tabs>
@@ -45,19 +55,22 @@
     </Card>
   </div>
 </template>
-<script lang="ts" setup>
+<script
+    lang="ts"
+    setup
+>
 
 import LoginWithGoogleTab from "~/components/auth-pages/login-with-google-tab.vue";
 import ForgetPassword from "~/components/auth-pages/forget-password.vue";
 import ResetPassword from "~/components/auth-pages/reset-password.vue";
 import EmailValidation from "~/components/auth-pages/email-validation.vue";
-import CreateFarm from "~/components/auth-pages/create-farm.vue";
+import CreateFarm from "~/components/auth-pages/adress-form.vue";
 
 definePageMeta({
-  layout: 'guest'
+  layout: 'guest',
+  title: 'Paloma Management'
 })
 
-const router = useRouter()
 const route = useRoute()
 
 </script>

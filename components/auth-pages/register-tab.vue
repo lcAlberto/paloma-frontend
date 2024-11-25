@@ -6,8 +6,8 @@
           :life="10000"
           closable
           severity="error"
-          @close="clearErrorMessage"
-          @life-end="clearErrorMessage"
+          @close="store.clearErrorMessage()"
+          @life-end="store.clearErrorMessage()"
       >{{ errorMessage }}
       </Message>
     </div>
@@ -79,6 +79,7 @@
       </div>
       <Password
           v-model="form.password_confirmation"
+          :feedback="false"
           :invalid="form.password_confirmation !== form.password"
           class="w-full"
           fluid
@@ -138,8 +139,8 @@ const form = ref({
 })
 const useTerms = ref(false)
 
-const errors = computed(() => store.getFormErrors);
-const errorMessage = computed(() => store.getErrorMessage);
+const errors = computed(() => store.errors.fields);
+const errorMessage = computed(() => store.errors.message);
 const isInvalid = computed(() => {
   return form.value.password !== form.value.password_confirmation ||
       form.value.name.length === 0 ||
@@ -147,15 +148,9 @@ const isInvalid = computed(() => {
       form.value.password.length === 0
 });
 
-
 async function submit() {
   await store.register(form.value, useTerms.value)
 }
-
-async function clearErrorMessage() {
-  await store.clearErrorMessage()
-}
-
 </script>
 
 

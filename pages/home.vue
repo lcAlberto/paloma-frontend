@@ -301,14 +301,17 @@
 >
 import {useAuthStore} from "~/stores/auth/authStore";
 
-const store = useAuthStore()
-onMounted(() => {
-  console.log('page home', store.getAuthUser);
+definePageMeta({
+  middleware: 'auth',
+  title: 'Home'
 })
+
+const store = useAuthStore()
 
 async function getMe() {
   await store.me()
 }
+
 </script>
 
 

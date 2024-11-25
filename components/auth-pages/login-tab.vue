@@ -6,8 +6,8 @@
           :life="10000"
           closable
           severity="error"
-          @close="clearErrorMessage"
-          @life-end="clearErrorMessage"
+          @close="store.clearErrorMessage"
+          @life-end="store.clearErrorMessage"
       >{{ errorMessage }}
       </Message>
     </div>
@@ -97,16 +97,11 @@ const form = ref({
 })
 const keepConnected = ref(false)
 
-const errors = computed(() => store.getFormErrors);
-const errorMessage = computed(() => store.getErrorMessage);
+const errors = computed(() => store.errors.fields);
+const errorMessage = computed(() => store.errors.message);
 
 async function submit() {
-  console.log('aaa')
   await store.login(form.value)
-}
-
-async function clearErrorMessage() {
-  await store.clearErrorMessage()
 }
 
 </script>

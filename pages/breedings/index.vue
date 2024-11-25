@@ -53,6 +53,11 @@
 >
 import PregnanciesTable from "~/components/production-cicle/pregnancies-datalist/pregnancies-table.vue";
 
+definePageMeta({
+  middleware: "auth",
+  title: "Breedings",
+})
+
 const router = useRouter()
 
 </script>
