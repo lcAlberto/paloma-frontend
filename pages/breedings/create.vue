@@ -49,6 +49,11 @@ import BreedingMainForm from "~/components/production-cicle/BreedingMainForm.vue
 import type {BreedingFormData} from "~/types/BreedingForm";
 import {useBreedingStore} from "~/stores/breeding/breeding";
 
+definePageMeta({
+  middleware: "auth",
+  title: "Create Breeding",
+})
+
 const router = useRouter()
 const store = useBreedingStore()
 

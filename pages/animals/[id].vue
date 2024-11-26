@@ -58,6 +58,11 @@ import TechnicalSheet from "~/components/animals/TechnicalSheet.vue";
 import AnimalImageForm from "~/components/animals/animal-image-form.vue";
 import {useRouter} from "#app";
 
+definePageMeta({
+  middleware: "auth",
+  title: "Edit Animal",
+})
+
 const route = useRoute()
 const store = useFlockStore()
 

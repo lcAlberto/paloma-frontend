@@ -18,13 +18,14 @@ import {useAddressStore} from "~/stores/address/addressStore";
 
 const props = defineProps({
   modelValue: {type: String, required: true},
-  errors: {type: String, required: true}
+  errors: {type: String, required: false}
 })
 const emits = defineEmits([
   'update:modelValue',
   'update-street',
   'update-country',
-  'update-state'
+  'update-state',
+  'update-city'
 ])
 
 const store = useAddressStore()
@@ -32,8 +33,6 @@ const store = useAddressStore()
 const zipValue = ref('')
 const isInvalid = computed(() => props.errors && props.errors.length > 0);
 const zipcodeData = computed(() => store.zipcodeData);
-const states = computed(() => store.getStates);
-
 
 watch(() => zipValue.value, (value) => {
   emits('update:modelValue', value)
@@ -44,8 +43,10 @@ async function fetchZipCode(zipCode: string) {
   if (zipCode && zipCode.length >= 8) {
     await store.fetchBrazilianZipCode(zipCode).then(() => {
       if (zipcodeData.value) {
-        emits('update-street', zipcodeData.value.street)
         emits('update-country', '1')
+        emits('update-state', zipcodeData.value.state)
+        emits('update-city', zipcodeData.value.city)
+        emits('update-street', zipcodeData.value.street)
       }
     })
   }

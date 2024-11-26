@@ -1,15 +1,36 @@
-import {useCookie, useNuxtApp, navigateTo, defineNuxtRouteMiddleware} from '#imports';
+import {useCookie, useNuxtApp, navigateTo, defineNuxtRouteMiddleware, useRouter} from '#imports';
+import {useAuthStore} from "~/stores/auth/authStore";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
-    console.log('defineNuxtRouteMiddleware');
-    const nuxtApp = useNuxtApp();
-    const accessToken = useCookie("token");
+  const nuxtApp = useNuxtApp();
+  const router = useRouter();
+  const accessToken = useCookie("token");
+  const authStore = useAuthStore();
+  const guestRoutes = ['/', '/create-farm'];
 
-    function isAuthenticated(): boolean {
-        return !!accessToken.value;
-    }
+  function isAuthenticated(): boolean {
+    return !!accessToken.value;
+  }
 
-    if (!isAuthenticated()) {
-        return nuxtApp.runWithContext(() => navigateTo('/'));
+  function hasFarm(): boolean {
+    return authStore.authUser && authStore.authUser?.farm_id;
+  }
+
+  if (isAuthenticated() && hasFarm()) {
+    if (guestRoutes.includes(to.path)) {
+      return nuxtApp.runWithContext(() => router.back());
     }
+  }
+
+  if (!isAuthenticated()) {
+    if (!guestRoutes.includes(to.path)) {
+      return nuxtApp.runWithContext(() => navigateTo('/'));
+    }
+  }
+
+  if (isAuthenticated() && !hasFarm()) {
+    if (to.path !== '/create-farm') {
+      return nuxtApp.runWithContext(() => navigateTo('/create-farm'));
+    }
+  }
 });
