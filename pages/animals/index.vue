@@ -21,6 +21,7 @@
       />
     </div>
     <div class="card py-5 flex flex-col gap-5 items-center justify-between h-full">
+      <flock-filters/>
       <div class="flex flex-col-reverse md:flex-row justify-center items-center w-full gap-4">
         <Tabs
             class="w-full"
@@ -52,6 +53,7 @@
     setup
 >
 import FlockTable from "~/components/animals/flock-datalist/flock-table.vue";
+import FlockFilters from "~/components/animals/flock-datalist/flock-filters.vue";
 
 definePageMeta({
   middleware: "auth",
