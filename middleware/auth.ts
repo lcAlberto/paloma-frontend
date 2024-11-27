@@ -28,9 +28,9 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     }
   }
 
-  if (isAuthenticated() && !hasFarm()) {
-    if (to.path !== '/create-farm') {
-      return nuxtApp.runWithContext(() => navigateTo('/create-farm'));
-    }
-  }
+  // if (isAuthenticated() && !hasFarm()) {
+  //   if (to.path !== '/create-farm') {
+  //     return nuxtApp.runWithContext(() => navigateTo('/create-farm'));
+  //   }
+  // }
 });

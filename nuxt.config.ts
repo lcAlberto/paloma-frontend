@@ -23,7 +23,7 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  modules: ['@primevue/nuxt-module', '@pinia/nuxt'],
+  modules: ['@primevue/nuxt-module', '@pinia/nuxt',],
   build: {
     transpile: ['primevue'],
   },
