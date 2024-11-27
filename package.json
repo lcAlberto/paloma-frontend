@@ -17,17 +17,20 @@
     "@fortawesome/vue-fontawesome": "^3.0.8",
     "@kyvg/vue3-notification": "^3.3.0",
     "@primevue/themes": "^4.0.5",
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/router": "^11.3.0",
     "moment": "^2.30.1",
     "nuxt": "^3.13.0",
     "primevue": "^4.0.5",
     "tailwindcss-primeui": "^0.3.4",
-    "vue": "^3.0.0"
+    "vue": "^3.0.0",
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@pinia/nuxt": "^0.5.4",
     "@primevue/auto-import-resolver": "^4.0.5",
     "@primevue/nuxt-module": "^4.0.5",
+    "@vueuse/core": "^11.3.0",
+    "@vueuse/nuxt": "^11.3.0",
     "autoprefixer": "^10.4.20",
     "pinia": "^2.2.2",
     "postcss": "^8.4.47",

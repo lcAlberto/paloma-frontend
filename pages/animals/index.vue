@@ -23,27 +23,9 @@
     <div class="card py-5 flex flex-col gap-5 items-center justify-between h-full">
       <flock-filters/>
       <div class="flex flex-col-reverse md:flex-row justify-center items-center w-full gap-4">
-        <Tabs
-            class="w-full"
-            value="0"
-        >
-          <TabList class="flex flex-col items-start w-full">
-            <Tab value="0">Fêmeas</Tab>
-            <Tab value="1">Machos</Tab>
-            <Tab value="2">Todos</Tab>
-          </TabList>
-          <TabPanels class="!p-0">
-            <TabPanel value="0">
-              <flock-table class=""/>
-            </TabPanel>
-            <TabPanel value="1">
-              ||
-            </TabPanel>
-            <TabPanel value="2">
-              \\
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+        <div class="w-full">
+          <flock-table/>
+        </div>
       </div>
     </div>
   </div>
@@ -54,13 +36,50 @@
 >
 import FlockTable from "~/components/animals/flock-datalist/flock-table.vue";
 import FlockFilters from "~/components/animals/flock-datalist/flock-filters.vue";
+import {useRouteParams, useRouteQuery} from "@vueuse/router";
+import {useFlockStore} from "~/stores/flock/flockStore";
+import {useUrlSearchParams} from "@vueuse/core";
+import moment from "moment/moment";
+import {ref} from "vue";
 
 definePageMeta({
   middleware: "auth",
   title: "Animals",
 })
 
+onMounted(() => {
+  fetchAnimals()
+});
+
 const router = useRouter()
+
+const params = ref({
+  name: useRouteQuery("name", null),
+  code: useRouteQuery("code", null),
+  classification: useRouteQuery("classification", null),
+  born_date: useRouteQuery("born_date", null),
+  born_date_from: useRouteQuery("born_date_from", null),
+  born_date_to: useRouteQuery("born_date_to", null),
+  age: useRouteQuery("age", null),
+  sex: useRouteQuery("sex", null),
+  status: useRouteQuery("status", null),
+  mother_id: useRouteQuery("mother_id", null),
+  father_id: useRouteQuery("father_id", null),
+  current_page: useRouteQuery("current_page", 1),
+  per_page: useRouteQuery("per_page", 10),
+
+});
+
+const store = useFlockStore();
+
+watch(() => params, () => {
+  fetchAnimals()
+}, {deep: true});
+
+async function fetchAnimals() {
+  await store.fetchAnimals(params.value)
+}
+
 </script>
 
 

@@ -2,14 +2,11 @@
   <DataTable
       v-model:expandedRows="expandedRows"
       v-model:selection="selected"
-      :rows="5"
-      :rowsPerPageOptions="[5, 10, 20, 50]"
       :value="flock"
       class="overflow-x-auto"
       dataKey="id"
       empty-message="Nenhum animal encontrado"
-      paginator
-      scrollHeight="50vh"
+      scrollHeight="45vh"
       scrollable
       selectionMode="multiple"
   >
@@ -127,8 +124,17 @@
         </ul>
       </div>
     </template>
-    <template #footer> Rebanho total em {{ flock ? flock.length : 0 }} animais.</template>
+    <template #footer> Rebanho total em {{ statePagination.total || 0 }} animais.</template>
   </DataTable>
+  {{ typeof perPage }}
+  <Paginator
+      :rows="parseInt(perPage)"
+      :rows-per-page-options="[5, 10, 20, 100]"
+      :total-records="statePagination.total"
+      @page="(page) => currentPage = page.page + 1"
+      @update:rows="(rows) => perPage = rows"
+  >
+  </Paginator>
 </template>
 <script
     lang="ts"
@@ -137,16 +143,18 @@
 import {useFlockStore} from "~/stores/flock/flockStore";
 import moment from "moment";
 import DatalistActionDropdown from "~/components/animals/flock-datalist/datalist-action-dropdown.vue";
+import {useRouteQuery} from "@vueuse/router";
 
 const store = useFlockStore()
 
-onMounted(() => {
-  loadFlock()
-});
+const flock = computed(() => store.allFlock);
+const statePagination = computed(() => store.pagination);
 
 const selected = ref()
 const expandedRows = ref({});
-const flock = computed(() => store.allFlock);
+
+const perPage = useRouteQuery('per_page', 10)
+const currentPage = useRouteQuery('current_page', 1)
 
 const getAge = (bornDate: string) => {
   const date = moment(bornDate, 'YYYY-MM-DD');
@@ -158,21 +166,16 @@ const getAge = (bornDate: string) => {
   return `${age.humanize()}`
 }
 
-
 const tagColor = ((status: string) => {
   switch (status) {
     case 'sold':
       return 'info'
-      break
     case 'alive':
       return 'success'
-      break
     case 'dead':
       return 'danger'
-      break
     default:
       return 'secondary'
-      break
   }
 });
 
@@ -183,14 +186,10 @@ const sexIconClass = (sex: string) => {
   return sex === 'female' ? 'text-red-500' : 'text-green-500'
 }
 
-
-async function loadFlock() {
-  await store.fetchAnimals()
-}
-
 async function deleteAnimal(animal_id: string | number) {
   await store.deleteAnimal(animal_id)
 }
+
 </script>
 
 
