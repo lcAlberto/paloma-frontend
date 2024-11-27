@@ -115,26 +115,24 @@
           </li>
           <li class="flex gap-2 p-3">
             <label class="">Mãe:</label>
-            <span class="font-bold">{{ slotProps.data.mother || 'Desconhecida' }}</span>
+            <span class="font-bold">{{ slotProps.data.mother.name || 'Desconhecida' }}</span>
           </li>
           <li class="flex gap-5 p-3">
             <label class="">Pai:</label>
-            <span class="font-bold">{{ slotProps.data.father || 'Desconhecida' }}</span>
+            <span class="font-bold">{{ slotProps.data.father.name || 'Desconhecida' }}</span>
           </li>
         </ul>
       </div>
     </template>
-    <template #footer> Rebanho total em {{ statePagination.total || 0 }} animais.</template>
+    <template #footer> Rebanho total em {{ statePagination.total }} animais.</template>
   </DataTable>
-  {{ typeof perPage }}
   <Paginator
       :rows="parseInt(perPage)"
       :rows-per-page-options="[5, 10, 20, 100]"
       :total-records="statePagination.total"
       @page="(page) => currentPage = page.page + 1"
       @update:rows="(rows) => perPage = rows"
-  >
-  </Paginator>
+  />
 </template>
 <script
     lang="ts"

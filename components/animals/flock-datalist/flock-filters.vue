@@ -147,10 +147,11 @@
         <Select
             id="sex"
             v-model="formData.mother_id"
-            :options="availableClassifications"
+            :loading="store.loading.fetchingMothers"
+            :options="store.availableMothers"
             class="w-full md:w-56"
-            option-label="label"
-            option-value="value"
+            option-label="name"
+            option-value="id"
             placeholder="Selecione"
             show-clear
         />
@@ -163,10 +164,11 @@
         <Select
             id="sex"
             v-model="formData.father_id"
-            :options="availableClassifications"
+            :loading="store.loading.fetchingFathers"
+            :options="store.availableFathers"
             class="w-full md:w-56"
-            option-label="label"
-            option-value="value"
+            option-label="name"
+            option-value="id"
             placeholder="Selecione"
             show-clear
         />
@@ -189,8 +191,15 @@
 >
 import {availableClassifications, availableStatus} from "~/constants/animals";
 import moment from "moment";
-import {ref, watch} from "vue";
 import {useRouteQuery} from "@vueuse/router";
+import {useFlockStore} from "~/stores/flock/flockStore";
+
+const store = useFlockStore()
+
+onMounted(() => {
+  store.fetchMothers()
+  store.fetchFathers()
+})
 
 const formData = ref({
   name: useRouteQuery("name", ""),

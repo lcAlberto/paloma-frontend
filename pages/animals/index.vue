@@ -48,7 +48,7 @@ definePageMeta({
 })
 
 onMounted(() => {
-  fetchAnimals()
+  loadAnimals()
 });
 
 const router = useRouter()
@@ -67,16 +67,15 @@ const params = ref({
   father_id: useRouteQuery("father_id", null),
   current_page: useRouteQuery("current_page", 1),
   per_page: useRouteQuery("per_page", 10),
-
 });
 
 const store = useFlockStore();
 
 watch(() => params, () => {
-  fetchAnimals()
+  loadAnimals()
 }, {deep: true});
 
-async function fetchAnimals() {
+async function loadAnimals() {
   await store.fetchAnimals(params.value)
 }
 

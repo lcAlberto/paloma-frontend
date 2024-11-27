@@ -182,15 +182,14 @@ const form = ref({
   coverage_date: undefined,
   cover_method: undefined,
   status: 'pending',
-  female_id: undefined,
-  male_id: undefined,
+  female_id: '',
+  male_id: '',
 })
 
 const store = useBreedingStore()
 
 onMounted(() => {
-  console.log('old', props.old);
-  form.value = props.old
+  // form.value = props.old
   if (props.old) {
     form.value = props.old
   }

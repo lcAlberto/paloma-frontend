@@ -3,9 +3,17 @@ import useAuthFetch from "~/composables/useAuthFetch";
 
 export const useBreedingStore = defineStore('breedingStore', () => {
   const breedings = ref([]);
+  const pagination = ref({
+    current_page: 1,
+    per_page: 5,
+    total: 0,
+  })
+
   const breeding = ref({});
+
   const availableMalesForReproduction = ref([]);
   const availableFemalesForReproduction = ref([]);
+
   const errors = ref({
     message: '',
     fields: []
@@ -44,13 +52,17 @@ export const useBreedingStore = defineStore('breedingStore', () => {
     errors.value.fields = [];
   }
 
-  async function fetchBreedings() {
+  async function fetchBreedings(params: object) {
     loading.fetchingAll = true;
     try {
-      const response = await useAuthFetch(`/breeding/`, {method: 'GET'});
+      const response = await useAuthFetch(`/breeding/`, {
+        method: 'GET',
+        params
+      });
       clearErrorMessage();
-      if (response.breedings) {
-        breedings.value = response.breedings;
+      if (response.data) {
+        breedings.value = response.data;
+        pagination.value = response.pagination;
       }
     } catch (error) {
       handleError(error as ApiError);
@@ -168,6 +180,7 @@ export const useBreedingStore = defineStore('breedingStore', () => {
     fetchAvailableMalesForReproduction,
     fetchAvailableFemalesForReproduction,
     breedings,
+    pagination,
     breeding,
     availableFemalesForReproduction,
     availableMalesForReproduction,
