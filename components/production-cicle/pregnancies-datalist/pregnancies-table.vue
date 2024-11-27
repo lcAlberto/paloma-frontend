@@ -2,13 +2,10 @@
   <DataTable
       v-model:expandedRows="expandedRows"
       v-model:selection="selected"
-      :rows="5"
-      :rowsPerPageOptions="[5, 10, 20, 50]"
       :value="pregnancies"
       class="overflow-x-auto"
       dataKey="id"
       empty-message="Nenhum animal encontrado"
-      paginator
       scrollHeight="50vh"
       scrollable
       selectionMode="multiple"
@@ -143,8 +140,15 @@
         </ul>
       </div>
     </template>
-    <template #footer> Total de ciclos reprodutivos: {{ pregnancies ? pregnancies.length : 0 }}.</template>
+    <template #footer> Total de ciclos reprodutivos: {{ statePagination.total }}.</template>
   </DataTable>
+  <Paginator
+      :rows="parseInt(perPage)"
+      :rows-per-page-options="[5, 10, 20, 100]"
+      :total-records="statePagination.total"
+      @page="(page) => currentPage = page.page + 1"
+      @update:rows="(rows) => perPage = rows"
+  />
 </template>
 <script
     lang="ts"
@@ -153,16 +157,22 @@
 import moment from "moment";
 import DatalistActionDropdown from "~/components/production-cicle/pregnancies-datalist/datalist-action-dropdown.vue";
 import {useBreedingStore} from "~/stores/breeding/breeding";
+import {useRouteQuery} from "@vueuse/router";
+
+const props = defineProps({
+  status: {type: String, required: true}
+})
 
 const store = useBreedingStore()
 
-onMounted(() => {
-  loadBreedings()
-});
-
 const selected = ref()
 const expandedRows = ref({});
+
+const perPage = useRouteQuery('per_page', 10)
+const currentPage = useRouteQuery('current_page', 1)
+
 const pregnancies = computed(() => store.breedings);
+const statePagination = computed(() => store.pagination);
 
 const tagColor = ((status: string) => {
   switch (status) {
@@ -177,11 +187,6 @@ const tagColor = ((status: string) => {
       break
   }
 });
-
-
-async function loadBreedings() {
-  await store.fetchBreedings()
-}
 
 async function deleteBreedings(breeding_id: string | number) {
   await store.destroy(breeding_id)

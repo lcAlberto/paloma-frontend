@@ -69,6 +69,7 @@ const formData: Ref<BreedingFormData> = ref({
 async function submit() {
   const param: T = formData.value
   await store.create(param);
+  router.push('/breedings')
 }
 </script>
 
