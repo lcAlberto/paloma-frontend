@@ -67,7 +67,7 @@
               style="background: transparent;"
               value="2"
           >
-            <adress-form v-model="addressForm"/>
+            <address-form v-model="addressForm"/>
             <div class="flex pt-6 justify-between">
               <Button
                   icon="fa fa-arrow-left"
@@ -93,7 +93,7 @@
 >
 import {useFarmStore} from "~/stores/farm/farmStore";
 import {useAddressStore} from "~/stores/address/addressStore";
-import AdressForm from "~/components/auth-pages/adress-form.vue";
+import AddressForm from "~/components/address/AddressForm.vue";
 import {useAuthStore} from "~/stores/auth/authStore";
 
 const farmStore = useFarmStore()

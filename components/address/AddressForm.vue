@@ -117,7 +117,6 @@ import AppZipCodeInput from '~/components/forms/address/app-zip-code-input.vue';
 import {useAddressStore} from '~/stores/address/addressStore';
 
 const addressStore = useAddressStore();
-const abbrState = ref('')
 
 const addressForm = defineModel({
   type: Object,
