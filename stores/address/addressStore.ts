@@ -7,6 +7,7 @@ export const useAddressStore = defineStore('addressStore', () => {
   const cities = ref([])
   const zipcodeData = ref({})
   const farmAddress = ref({})
+  const address = ref({})
   const errors: { message: string | null, fields: Ref } = {
     message: null,
     fields: ref([])
@@ -17,6 +18,7 @@ export const useAddressStore = defineStore('addressStore', () => {
     fetchingCities: false,
     fetchingZipCode: false,
     creatingFarmAddress: false,
+    fetchAddress: false,
   }
   const toast = <ToastType>{
     type: 'info',
@@ -28,6 +30,43 @@ export const useAddressStore = defineStore('addressStore', () => {
   }
 
   const config = useRuntimeConfig();
+
+  async function fetchAddress(addressId: string | number) {
+    try {
+      loading.fetchAddress = true;
+      const response = await useAuthFetch(`/address/${addressId}`, {
+        method: 'GET',
+      })
+      if (response)
+        address.value = response.data
+    } catch (error) {
+      if (error && error.data) {
+        errors.fields = error.data.errors;
+        errors.message = error.data.message
+      }
+      errors.message = 'Erro interno do servidor.'
+    } finally {
+      loading.fetchingCountries = false;
+    }
+  }
+
+  async function edit(id: string | number, params: object) {
+    try {
+      loading.fetchingStates = true;
+      const response = useAuthFetch(`/address/${id}`, {
+        method: 'PUT',
+        params
+      })
+    } catch (error) {
+      if (error && error.data) {
+        errors.fields = error.data.errors;
+        errors.message = error.data.message
+      }
+      errors.message = 'Erro interno do servidor.'
+    } finally {
+      loading.fetchingStates = false;
+    }
+  }
 
   async function fetchCountries() {
     try {
@@ -147,10 +186,13 @@ export const useAddressStore = defineStore('addressStore', () => {
     errors,
     loading,
     toast,
+    address,
     fetchCountries,
     fetchStates,
     fetchCities,
     fetchBrazilianZipCode,
-    createAddressFarm
+    createAddressFarm,
+    fetchAddress,
+    edit
   }
 })

@@ -55,11 +55,9 @@ export const useFarmStore = defineStore('farmStore', () => {
   async function fetchFarm(farm_id: string | number) {
     try {
       loading.fetchingFarm = true
-      const response = await useAuthFetch(`/farms`, {
-        method: 'GET',
-      })
+      const response = await useAuthFetch(`/farms/${farm_id}`, {method: 'GET'})
       clearErrorMessage()
-      farm.value = response.farm
+      farm.value = response
     } catch (error) {
       if (error && error.data) {
         errors.fields = error.data.errors;

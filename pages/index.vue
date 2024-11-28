@@ -64,7 +64,7 @@ import LoginWithGoogleTab from "~/components/auth-pages/login-with-google-tab.vu
 import ForgetPassword from "~/components/auth-pages/forget-password.vue";
 import ResetPassword from "~/components/auth-pages/reset-password.vue";
 import EmailValidation from "~/components/auth-pages/email-validation.vue";
-import CreateFarm from "~/components/auth-pages/adress-form.vue";
+import CreateFarm from "~/components/address/AddressForm.vue";
 
 definePageMeta({
   layout: 'guest',
